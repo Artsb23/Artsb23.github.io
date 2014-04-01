@@ -1,0 +1,17 @@
+{% extends "Template.html" %}
+{% block content %}
+    <br>
+    <div>
+    <h3>Checkout Successful! </h3>
+    <br>
+    <h4>Your order details:</h4>
+    <br>
+    <label>Order Id:{{ orderId }}</label>
+    <br>
+    <label>Order Status:{{ order_status }}</label>
+    <br>
+    <label>Order Date:{{ order_date }}</label>
+    <br>
+    <label>Order Cost:{{ order_cost }}</label>
+    </div>
+{% endblock %}

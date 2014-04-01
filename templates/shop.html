@@ -1,0 +1,27 @@
+{% extends "Template.html" %}
+{% block content %}
+    <br>
+    <h1> {{ fname }}, Start Shopping!</h1>
+    <div>
+    {% for image,name in img_list.items() %}
+    <a href="{{ url_for('dress', name = name, image = image)}}"><img src="{{ url_for('static', filename = image )}}"/></a>
+    {% endfor %}
+
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+           span_cart_item = $("#no_of_items");
+           span_cart_item.text('{{items|safe}}');
+           span_cart_item.css('display','block');
+           if(span_cart_item.text() > 0)
+           {
+               $("#chkout_cart").href("{{ url_for('checkout')}}");
+               $("#error").css("display", "none");
+           }
+           else
+           {
+               $("#chkout_cart").href("")
+           }
+        });
+    </script>
+{% endblock %}

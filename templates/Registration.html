@@ -1,0 +1,135 @@
+{% extends "Template.html" %}
+{% block content %}
+    <br>
+    {% if error %}
+    <p style="color: red"><strong>Error:</strong> {{ error }} </p>
+    {% endif %}
+   <form action="" method="post">
+    <table>
+        <tr>
+            <td>
+                <label id="fnamelbl">First Name<span style="color: red">*</span></label>
+            </td>
+            <td>
+                <input type="text" name="fname" placeholder="First Name">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label id="lnamelbl">Last Name<span style="color: red">*</span></label>
+            </td>
+            <td>
+                <input type="text" name="lname" placeholder="Last Name">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label id="usrnamelbl">Username<span style="color: red">*</span></label>
+            </td>
+            <td>
+                <input type="text" id="usrname" name= "usrname" placeholder="Username" value="{{ request.form.usrname }}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label id="Passwordlbl">Password<span style="color: red">*</span></label>
+            </td>
+            <td>
+                <input type="password" id="password" name="password" placeholder="Password">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label id="emaillbl">Email <span style="color: red">*</span></label>
+            </td>
+            <td>
+                <input type="email" name="email" placeholder="Email">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label id="genderlbl">Gender</label>
+            </td>
+            <td>
+
+                <label id="malelbl">Male</label>
+
+                <input type="radio" name="gender" id="male" value ="male">
+
+                <label id="femalelbl">Female</label>
+
+                <input type="radio" name="gender" id="female" value="female">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label id="phonelbl">Phone</label>
+            </td>
+            <td>
+                <input type="tel" name="Phone" placeholder="Phone number">
+            </td>
+
+
+        </tr>
+        <tr>
+            <td>
+               <label>Appartment/ House Number</label>
+            </td>
+
+            <td>
+                <input type="text" name="aptno" placeholder="Appartment Number">
+            </td>
+        </tr>
+        <tr>
+            <td>
+               <label>Street</label>
+            </td>
+
+            <td>
+                <input type="text" name="street" placeholder="Street">
+            </td>
+        </tr>
+         <tr>
+             <td>
+                <label>City</label>
+             </td>
+
+            <td>
+                <input type="text" name="city" placeholder="City">
+            </td>
+        </tr>
+        <tr>
+            <td>
+               <label>Zip Code</label>
+            </td>
+
+            <td>
+                <input type="text" name="zip" placeholder="Zip Code">
+            </td>
+        </tr>
+        <tr>
+            <td>
+               <label>State</label>
+            </td>
+
+            <td>
+                <input type="text" name="state" placeholder="State">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Country</label>
+            </td>
+            <td>
+                <input type="text" name="country" placeholder="Country">
+            </td>
+        </tr>
+
+
+    </table>
+    <br>
+    <br>
+    <input type="submit" id="submitbtn" class="btn-default" value="Register">
+   </form>
+
+{% endblock %}

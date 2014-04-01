@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script type=text/javascript
+          src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script type=text/javascript>
+          var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+        </script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-store</title>
+
+</head>
+<body>
+<script type="text/javascript">
+    var items_no = 0;
+    $(document).ready(function() {
+      $.getJSON($SCRIPT_ROOT + '/template_header', {
+      }, function(data) {
+        if(data.result >= 0)
+                {
+                    span_cart_item = $("#no_of_items");
+                    span_cart_item.text(data.result);
+                    span_cart_item.css('display','block');
+
+                }
+      });
+      return false;
+    });
+
+
+</script>
+<div class="navbar-wrapper">
+      <div class="container">
+
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">E-Store</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="#about">About</a></li>
+
+                <li style="float: right"><a href="{{url_for('reg')}}">Register</a></li>
+                 <li style="float: right"><a href="{{url_for('login')}}">Login</a></li>
+                <li><a href="{{ url_for('checkout') }}" id="chkout_cart"><img src="/static/img/shopping_cart.ico" id="shp_cart" style="float: right; margin-right: -850px; margin-top: -10px" width="50" height="50"><strong><span id="no_of_items" style="float: right; right: -810px; top:16px; color: darkviolet; position:absolute; display: none"></span></strong></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Carousel -->
+    <div id="myCarousel" style="left: 105px; width: 85%;" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="/static/img/banner3.jpg" height="350"  style="width: 100%;" alt="First slide">
+        </div>
+        <div class="item">
+          <img src="/static/img/banner5.jpg" height="350" style="width: 100%;" alt="Second slide">
+        </div>
+        <div class="item">
+          <img src="/static/img/banner7.jpg" height="350" style="width: 100%;" alt="Third slide">
+        </div>
+        <div class="item">
+          <img src="/static/img/banner4.jpg" height="350"  style="width: 100%;" alt="Fourth slide">
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+
+    <div class="container">
+    {% block content %}
+    {% endblock %}
+    </div>
+     <!-- FOOTER -->
+      <footer>
+        <br>
+        <br>
+        <p style="margin-left: 125px; margin-top: 100px;"><a href="#">Back to top</a></p>
+        <p style="margin-left: 550px; margin-top: 100px">&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      </footer>
+
+</body>
+</html>

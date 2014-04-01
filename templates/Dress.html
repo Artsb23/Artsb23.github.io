@@ -1,0 +1,120 @@
+{% extends "Template.html" %}
+{% block content %}
+    <script type=text/javascript
+          src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <form  action="" id="form_dress" class="form-group">
+
+        <div style="float: left">
+            <br>
+            <h2><label id="namelbl">{{ name }}</label></h2>
+
+            <img src="{{ url_for('static', filename = image )}}" height="350px" width="350px"></td>
+
+        </div>
+       <div style="float: left; margin-top : 100px; margin-left : -100px;">
+           <label id="sizelbl" class="control-label">Please Select a Size</label>
+
+           <select id="sizeddl" class="dropdown-header" onchange="chng({{ inv_list|safe }})">
+                <option value="select" id="selectopt" selected>SELECT</option>
+                {% for size, color in  inv_list.items() %}
+                <option value="{{ size }}" id="{{ size }}">{{ size }}</option>
+                {% endfor %}
+           </select>
+       </div>
+
+       <div style="float: left; margin-left: -140px;margin-top: 160px;">
+            <label id="colorlbl" style="display: none" class="control-label">Please Select a Color</label>
+
+            <select id="colorddl" style="display: none" class="dropdown-header">
+                 <option value="select" id="selectoptc" selected>SELECT</option>
+            </select>
+       </div>
+        <div style="margin-top: 220px;margin-left: -150px; float: left">
+            <button id="submitBtn" type="submit" class="btn btn-default btn-lg">
+                Add to Cart <span class="glyphicon glyphicon-shopping-cart"></span>
+            </button>
+        </div>
+
+    </form>
+    <script type="text/javascript">
+
+$(function() {
+    var submit_form = function() {
+      var e = document.getElementById("sizeddl");
+      var size = e.options[e.selectedIndex].value;
+      var obj = document.getElementById("colorddl");
+      var color = obj.options[obj.selectedIndex].value;
+      var name = $("#namelbl").html();
+      $.getJSON($SCRIPT_ROOT + '/add_to_cart', {
+       name:name,
+        size: size,
+        color: color
+      }, function(data) {
+        if(data.result != 0)
+                {
+                    span_cart_item = $("#no_of_items");
+                    span_cart_item.text(data.result);
+                    span_cart_item.css('display','block');
+
+                }
+      });
+      return false;
+    };
+     $('#submitBtn').bind('click', submit_form);
+
+  });
+
+ </script>
+<script type="text/javascript">
+
+
+        function chng(lst){
+            //var lst = {"XS":["blue","red"],"S":["black"]};
+            var e = document.getElementById("sizeddl");
+            var list = e.options[e.selectedIndex].value;
+            var obj = document.getElementById("colorddl");
+            var lbl = document.getElementById("colorlbl");
+            lbl.style.display = "none";
+            obj.style.display = "none";
+            while(obj.options.length > 1)
+            {
+                obj.remove(1);
+            }
+            var opt = document.createElement("option");
+            var form = document.getElementById("form_dress");
+            var j = lst[list].length;
+            for(var i=0; i < lst[list].length; i++)
+            {
+                /*opt.text = lst[list][i];
+                opt.value = lst[list][i];
+                obj.add(opt,obj[i]);*/
+                obj.options[obj.options.length] = new Option(lst[list][i], lst[list][i]);
+            }
+            if(obj.options.length > 1)
+            {
+                lbl.style.display = "block";
+                obj.style.display = "block";
+            }
+
+
+        };
+    </script>
+    <script>
+    $(document).ready(function(){
+           span_cart_item = $("#no_of_items");
+           span_cart_item.text('{{items|safe}}');
+           span_cart_item.css('display','block');
+           if(span_cart_item.text() > 0)
+           {
+               $("#chkout_cart").href("{{ url_for('checkout')}}");
+               $("#error").css("display", "none");
+           }
+           else
+           {
+
+               $("#chkout_cart").href("")
+           }
+        });
+    </script>
+
+{% endblock %}
