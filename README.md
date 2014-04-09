@@ -1,6 +1,7 @@
 Artsb23.github.io
 =================
 DESCRIPTION
+
 E-Store is a prototype E-commerce website which is created using Python as a server
 side language, and utilizes the Flask framework, with back-end data stored in a MySQL
 database. This prototype comprises of all archetypical features found in an ecommerce
