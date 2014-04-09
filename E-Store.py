@@ -11,7 +11,7 @@ app = Flask(__name__)
 cnx = MySQLdb.connect(
     host = 'localhost',
     user = 'root',
-    passwd = 'april-23',
+    passwd = '*****',
     db = 'estore')
 cur = cnx.cursor()
 
@@ -30,19 +30,12 @@ def reg():
             error = "Please fill in all the mandatory fields."
         else:
             usr = str(request.form['usrname'])
-            #usr = 'kganapathi'
             pswrd = str(request.form['password'])
-            #pswrd = 'abc123'
             email = str(request.form['email'])
-            #email = 'yokarthikg@gmail.com'
             fname = str(request.form['fname'])
-            #fname = 'k'
             lname = str(request.form['lname'])
-            #lname = 'gan'
             gender = str(request.form['gender'])
-            #gender = 'M'
             phone = str(request.form['Phone'])
-            #phone = 213452112
             aptno = str(request.form['aptno'])
             Street = str(request.form['street'])
             City = str(request.form['city'])
@@ -93,7 +86,6 @@ def shop(fname):
         result = cur.fetchall()
         for row in result:
             img_list[row[0]] = row[1]
-        #img_list["fname"] = fname
         exist_cart = cur.execute("select Cart_Id, no_of_items from cart where customer_id = %s and Checkout = 0" % (session['cus_Id']))
         if exist_cart > 0:
             res = cur.fetchall()
