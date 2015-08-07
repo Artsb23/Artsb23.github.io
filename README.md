@@ -8,7 +8,7 @@ database. This prototype comprises of all archetypical features found in an ecom
 website.
 
 The following is a flow that a user goes thru, right from the time he lands on the
-webpage, to the time he does a checkout
+webpage, to the time he completes a checkout
 
 ● Ability to register and store new user information – As soon as a new user
 comes in, he would be given the option to register, where he gets to fill in a form.
