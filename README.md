@@ -7,14 +7,14 @@ side language, and utilizes the Flask framework, with back-end data stored in a 
 database. This prototype comprises of all archetypical features found in an ecommerce
 website.
 
-The following is a flow that a user goes thru, right from the time he lands on the
-webpage, to the time he completes a checkout
+The following is a flow that a user goes through, right from the time she lands on the
+webpage, to the time she completes a checkout
 
 ● Ability to register and store new user information – As soon as a new user
-comes in, he would be given the option to register, where he gets to fill in a form.
+comes in, she would be given the option to register, and gets to fill in a form.
 
-● Existing user sign-in and validation - Once submitted, the user just has to use
-the same credentials when he comes onto the website again. Else the user would
+● Existing user sign-in and validation - Once submitted, the user can use
+the same credentials when he comes back to the website again. Else the user would
 be prompted to fill it in, until he gets it right
 
 ● Ability to view all the inventory having non-zero quantity - Once done
